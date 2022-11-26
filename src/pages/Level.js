@@ -1,9 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
 import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'
 
-const Home = () => {
+const Level = () => {
+  const [name, setName] = useState("");
   const [lists, setLists] = useState([]);
+  const handleChange = (e) => {
+    setName(e.target.value);
+  }
+  const handleSubmit = (e) => {
+    axios.post(`http://localhost:3001/level`,{
+      name: name
+    })
+    .then(() => {
+      getAxios();
+      setName("")
+    })
+    e.preventDefault();
+  }
   const getAxios = () => {
     axios.get(`http://localhost:3001/level`)
     .then((result) => {
@@ -38,6 +52,14 @@ const Home = () => {
   return (
     <>
       <Navbar/>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nama:</label><br/>
+          <input type='text' name={name} onChange={handleChange} placeholder='isi nama lengkap'/>
+        </div>
+        <button type='submit'>Simpan</button>
+      </form>
+      <br/>
       <div>
         {showList}
       </div>
@@ -45,4 +67,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Level

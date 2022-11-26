@@ -1,13 +1,15 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Daftar from './pages/Daftar';
+import Level from './pages/Level'
+import Program from './pages/Program'
+import Registrar from './pages/Registrar'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/daftar" element={<Daftar />} />
+      <Route path="/" element={<Registrar />} />
+      <Route path="/program" element={<Program />} />
+      <Route path="/level" element={<Level />} />
     </Routes>
   )
 }
